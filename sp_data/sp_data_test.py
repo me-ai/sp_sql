@@ -9,6 +9,8 @@ username = secret_user
 password = secret_password
 cnxn = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password)
 query = query_mdm_inventory
+
+## Specify comuns for csv
 col_names = [
     'InventoryItemID',
     'ProductIdentifier',
@@ -36,6 +38,7 @@ col_names = [
     'PhysicalCountCycleCountDays',
     'IndirectProcurementMaxPrice'
 ]
+
 SQL_Query = pd.read_sql_query(query, cnxn)
 pd.set_option('display.max_rows', 1000)
 df = pd.DataFrame(SQL_Query, columns=col_names)
